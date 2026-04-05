@@ -9,7 +9,7 @@
 - **Theme:** Caribbean-themed Association & Scholarship Website
 - **Status:** 🟡 IN PROGRESS — Blueprint approved, Pre-build GitHub/Vercel setup
 - **Hosting:** GitHub → Vercel (auto-deploy on push)
-- **Domain:** TBD (Vercel default initially)
+- **Domain:** https://cacao-webpage.vercel.app/
 
 ---
 
@@ -108,3 +108,4 @@
 |------|--------|--------|
 | 2026-04-05 | File initialized | Protocol 0 startup |
 | 2026-04-05 | Data Schema confirmed, Behavioral Rules & Invariants locked | Discovery Q&A complete |
+| 2026-04-05 | Repository created & Vercel linked | Phase 2 Link completed |

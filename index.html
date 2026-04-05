@@ -4,16 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CACAO - Central Alabama Caribbean American Organizations</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="hero">
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">CACAO</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#scholarships">Scholarships</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact" class="btn-sm btn-accent">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
         <div class="overlay"></div>
-        <div class="hero-content">
+        <div class="hero-content container">
             <h1>Celebrating Caribbean Culture & Community</h1>
-            <p>Raising Scholarships for Caribbean American Students</p>
-            <a href="#donate" class="btn">Donate / Learn More</a>
+            <p>Empowering the next generation through scholarships and cultural preservation.</p>
+            <div class="hero-actions">
+                <a href="#scholarships" class="btn btn-accent">Apply for Scholarship</a>
+                <a href="#donate" class="btn btn-secondary">Donate Now</a>
+            </div>
         </div>
     </header>
+
+    <section id="about" class="section">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Our Mission</h2>
+                <p>The Central Alabama Caribbean American Organizations (CACAO) is dedicated to preserving and sharing the rich heritage, traditions, and vibrant culture of the Caribbean islands within our local community.</p>
+                <br>
+                <p>Through community events, cultural showcases, and our primary initiative—raising funds to provide higher education scholarships for Caribbean American students—we strive to build a legacy of strength, unity, and excellence.</p>
+            </div>
+            <div class="about-image">
+                <img src="assets/images/gallery-student.png" alt="CACAO Scholarship Student" class="rounded-shadow">
+            </div>
+        </div>
+    </section>
+
+    <section id="scholarships" class="section section-lush text-center">
+        <div class="container container-sm">
+            <h2 class="text-white">Scholarship Program</h2>
+            <p class="text-white lead">We believe education is the foundation of a thriving community. Every year, we sponsor students of Caribbean descent to help them achieve their collegiate dreams.</p>
+            
+            <div class="scholarship-actions">
+                <!-- If the link changes, the operator drops the new form URL here -->
+                <a href="#" target="_blank" class="btn btn-accent">Student Application Form</a>
+                <a href="#" target="_blank" class="btn btn-accent">Become a Sponsor</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="events" class="section text-center bg-sand">
+        <div class="container">
+            <h2>Upcoming Events</h2>
+            <p class="lead">Join us as we celebrate our roots. Music, food, and community await.</p>
+            
+            <!-- Cards will be injected dynamically via JS from Google Sheets -->
+            <div id="events-grid" class="events-grid">
+                <!-- Placeholders until we wire the JS -->
+                <div class="card event-card">
+                    <img src="assets/images/gallery-food.png" alt="Caribbean Food Festival">
+                    <div class="card-content">
+                        <span class="date">Oct 12, 2026</span>
+                        <h3>Annual Food Festival</h3>
+                        <p>Taste the islands! Join us for authentic jerk, roti, plantains and more family fun.</p>
+                    </div>
+                </div>
+                <div class="card event-card">
+                    <img src="assets/images/gallery-parade.png" alt="Masquerade Gala">
+                    <div class="card-content">
+                        <span class="date">Dec 01, 2026</span>
+                        <h3>Winter Masquerade</h3>
+                        <p>Our premier scholarship fundraising gala. Music, dancing, and awards.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section text-center">
+        <div class="container">
+            <h2>Cultural Memories</h2>
+            <p class="lead">A look back at CACAO's impact and celebrations.</p>
+            
+            <div class="gallery-masonry">
+                <img src="assets/images/gallery-parade.png" alt="Carnival dancers" class="gallery-img">
+                <img src="assets/images/gallery-food.png" alt="Traditional food" class="gallery-img">
+                <img src="assets/images/gallery-student.png" alt="Student receiving scholarship" class="gallery-img">
+                <!-- Operators can add more images here easily -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section section-primary text-center">
+        <div class="container container-sm">
+            <h2 class="text-white">Get In Touch</h2>
+            <p class="text-white">Have questions? Want to volunteer? We'd love to hear from you.</p>
+            <div class="form-wrapper">
+                <!-- Placeholder for Google Form embed. Operator replaces this with actual iframe -->
+                <div class="form-placeholder">
+                    [Google Form Embed Here - Update src="" when ready]
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>CACAO</h3>
+                <p>Central Alabama Caribbean American Organizations</p>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#scholarships">Scholarships</a>
+                <a href="#events">Events</a>
+            </div>
+            <div class="footer-copy">
+                &copy; <span id="year">2026</span> CACAO. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
 </body>
 </html>
