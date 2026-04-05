@@ -262,6 +262,8 @@ p.lead {
     position: relative;
     z-index: 2;
     max-width: 870px;
+    margin-top: 40vh; /* Pushes text downward below her face */
+    padding-bottom: 60px;
 }
 
 .hero-content h1 {
