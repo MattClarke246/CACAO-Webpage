@@ -198,18 +198,22 @@ p.lead {
 
 .nav-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Pushes the links to the right */
     align-items: center;
+    position: relative; /* Allows for absolute centering of logo */
 }
 
 .logo-link {
     display: flex;
     align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Perfect center */
     transition: transform 0.3s ease;
 }
 
 .logo-link:hover {
-    transform: scale(1.03);
+    transform: translateX(-50%) scale(1.03); /* Maintain center on hover */
 }
 
 .logo-img {
