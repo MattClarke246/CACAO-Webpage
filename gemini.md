@@ -80,9 +80,9 @@
 ## 📏 Architectural Invariants
 > Rules that MUST NEVER be broken.
 
-- **No backend server.** All dynamic data flows through Google Forms/Sheets embeds.
+- **No backend server.** All dynamic data flows through Google Forms/Sheets embeds or external APIs.
 - **Static HTML/CSS/JS only.** Deployed to Vercel as a static site from GitHub.
-- **Google Forms are embedded via `<iframe>`.** Never build a custom backend form handler.
+- **Google Forms are embedded via `<iframe>`, EXCEPT Contact Form.** The user requested a clean HTML Q&A form for contact, to be hooked up to a database later.
 - **All images live in `/assets/images/`.** No external image CDNs unless explicitly approved.
 - **Mobile-first breakpoints.** All components must be responsive (375px → 1440px).
 - **Accessibility baseline.** All images have `alt` text. Font size minimum 16px body.
