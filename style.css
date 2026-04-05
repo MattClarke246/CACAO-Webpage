@@ -198,10 +198,8 @@ p.lead {
 
 .nav-content {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 16px;
 }
 
 .logo-link {
@@ -215,11 +213,10 @@ p.lead {
 }
 
 .logo-img {
-    height: 90px;
+    height: 54px;
     width: auto;
     object-fit: contain;
     border-radius: 6px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .nav-links {
