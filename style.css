@@ -542,11 +542,12 @@ h2::after {
     margin-bottom: 24px;
 }
 
-.footer-brand h3 {
-    color: var(--color-accent);
-    letter-spacing: 3px;
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+.footer-logo {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 16px;
 }
 .footer-brand p { opacity: 0.65; font-size: 14px; }
 
