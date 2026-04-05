@@ -202,12 +202,21 @@ p.lead {
     align-items: center;
 }
 
-.logo {
-    font-family: var(--font-heading);
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--color-accent);
-    letter-spacing: 3px;
+.logo-link {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.03);
+}
+
+.logo-img {
+    height: 46px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
 }
 
 .nav-links {
