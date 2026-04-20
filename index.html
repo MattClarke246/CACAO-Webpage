@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CACAO — Central Alabama Caribbean American Organizations</title>
     <meta name="description" content="Central Alabama Caribbean American Organizations — Celebrating Caribbean culture and raising scholarships for Caribbean American students.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; form-action 'self'; base-uri 'self'">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
@@ -81,8 +82,8 @@
             </div>
 
             <div class="scholarship-actions">
-                <a href="#" target="_blank" class="btn btn-accent">Student Application Form</a>
-                <a href="#" target="_blank" class="btn btn-secondary">Become a Sponsor</a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-accent">Student Application Form</a>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Become a Sponsor</a>
             </div>
         </div>
     </section>
@@ -131,18 +132,18 @@
         <div class="container container-sm">
             <h2 class="text-white">Get In Touch</h2>
             <p class="text-white lead">Have questions? Want to volunteer or donate? We'd love to hear from you.</p>
-            <form class="contact-form" action="#" method="POST" id="custom-contact-form">
+            <form class="contact-form" action="#" method="POST" id="custom-contact-form" autocomplete="off">
                 <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required maxlength="100" pattern="[A-Za-z\s\-'.]{1,100}" title="Letters, spaces, hyphens, and apostrophes only">
                 </div>
                 <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required maxlength="254">
                 </div>
                 <div class="form-group">
-                    <input type="text" id="subject" name="subject" placeholder="Subject">
+                    <input type="text" id="subject" name="subject" placeholder="Subject" maxlength="200">
                 </div>
                 <div class="form-group">
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message or Question" required></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message or Question" required maxlength="2000"></textarea>
                 </div>
                 <button type="submit" class="btn btn-accent btn-full">Send Message</button>
             </form>
