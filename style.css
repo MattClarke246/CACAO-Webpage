@@ -1093,13 +1093,6 @@ h2::after {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
-.scholar-card--text-only {
-    justify-content: center;
-    min-height: 200px;
-    padding-top: 28px;
-    padding-bottom: 28px;
-}
-
 .scholar-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
