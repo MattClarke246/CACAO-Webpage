@@ -5,11 +5,32 @@ document.addEventListener('DOMContentLoaded', () => {
         yearElement.textContent = new Date().getFullYear();
     }
 
+    // Hamburger Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinksList = document.getElementById('nav-links');
+
+    if (hamburger && navLinksList) {
+        hamburger.addEventListener('click', () => {
+            navLinksList.classList.toggle('nav-active');
+            hamburger.classList.toggle('toggle');
+        });
+
+        // Close menu when a link is clicked
+        const navItems = navLinksList.querySelectorAll('a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinksList.classList.remove('nav-active');
+                hamburger.classList.remove('toggle');
+            });
+        });
+    }
+
     /* 
      * --- GOOGLE SHEETS INTEGRATION (A.N.T Layer 3 Example) ---
      * In Phase 5, the operator will publish a Google Sheet as CSV.
      * We will drop the URL here.
      * 
+
     const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-xxxxxx/pub?output=csv";
     
     fetch(sheetURL)

@@ -198,23 +198,20 @@ p.lead {
 
 .nav-content {
     display: flex;
-    justify-content: flex-end; /* Pushes the links to the right */
+    justify-content: space-between; /* Pushes the logo to left, links to right */
     align-items: center;
-    position: relative; /* Allows for absolute centering of logo */
-    min-height: 54px; /* Ensures header has enough height for the absolute logo */
+    position: relative;
+    min-height: 54px;
 }
 
 .logo-link {
     display: flex;
     align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* Perfect center */
     transition: transform 0.3s ease;
 }
 
 .logo-link:hover {
-    transform: translateX(-50%) scale(1.03); /* Maintain center on hover */
+    transform: scale(1.03);
 }
 
 .logo-img {
@@ -880,17 +877,75 @@ h2::after {
     .board-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 }
 
+/* Base Hamburger hiding for desktop */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001; /* Above the mobile menu */
+}
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--color-white);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 950px) {
+    .hamburger {
+        display: flex; /* Show the hamburger */
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 300px;
+        background: rgba(26, 26, 46, 0.98); /* Solid dark theme for contrast */
+        border-left: 2px solid rgba(255, 199, 87, 0.4);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 100px;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+    }
+    
+    .nav-links.nav-active {
+        right: 0;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 15px 0;
+        font-size: 18px;
+    }
+
+    /* Hamburger Animation to 'X' */
+    .hamburger.toggle span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.toggle span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
 @media (max-width: 600px) {
-    .nav-links { display: none; }
-    .nav-content { justify-content: center; } /* Centers the mobile logo */
-    .logo-link {
-        position: relative;
-        left: auto;
-        transform: none; /* Restore normal flow on mobile */
-    }
-    .logo-link:hover {
-        transform: scale(1.03);
-    }
     .hero-actions { flex-direction: column; align-items: center; }
     .scholarship-actions { flex-direction: column; align-items: center; }
     .scholarship-stat-row { gap: 30px; }
