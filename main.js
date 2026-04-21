@@ -1,4 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ----- Festival countdown (June 6, 2026, 11:00 AM – 9:00 PM Central) -----
+    (function initFestivalCountdown() {
+        const roots = document.querySelectorAll('[data-festival-countdown]');
+        if (!roots.length) return;
+
+        // 11:00 AM CDT → 16:00 UTC; 9:00 PM CDT June 6 → 02:00 UTC June 7
+        const FESTIVAL_START = new Date('2026-06-06T16:00:00Z');
+        const FESTIVAL_END = new Date('2026-06-07T02:00:00Z');
+
+        function pad2(n) {
+            return String(Math.max(0, n)).padStart(2, '0');
+        }
+
+        function render() {
+            const now = new Date();
+            roots.forEach((root) => {
+                const units = root.querySelector('.countdown-units');
+                const sub = root.querySelector('.festival-countdown-sub');
+                const liveMsg = root.querySelector('[data-cd-live]');
+                const endedMsg = root.querySelector('[data-cd-ended]');
+
+                const heading = root.querySelector('.festival-countdown-heading');
+
+                if (now >= FESTIVAL_END) {
+                    if (units) units.hidden = true;
+                    if (sub) sub.hidden = true;
+                    if (liveMsg) liveMsg.hidden = true;
+                    if (endedMsg) endedMsg.hidden = false;
+                    if (heading) heading.hidden = true;
+                    root.classList.add('countdown--ended');
+                    return;
+                }
+
+                if (now >= FESTIVAL_START) {
+                    if (units) units.hidden = true;
+                    if (sub) sub.hidden = true;
+                    if (liveMsg) liveMsg.hidden = false;
+                    if (endedMsg) endedMsg.hidden = true;
+                    if (heading) heading.hidden = true;
+                    root.classList.add('countdown--live');
+                    return;
+                }
+
+                if (units) units.hidden = false;
+                if (sub) sub.hidden = false;
+                if (liveMsg) liveMsg.hidden = true;
+                if (endedMsg) endedMsg.hidden = true;
+                if (heading) heading.hidden = false;
+                root.classList.remove('countdown--live', 'countdown--ended');
+
+                let ms = FESTIVAL_START - now;
+                const sec = Math.floor(ms / 1000) % 60;
+                const min = Math.floor(ms / 60000) % 60;
+                const hr = Math.floor(ms / 3600000) % 24;
+                const day = Math.floor(ms / 86400000);
+
+                const dEl = root.querySelector('[data-cd-days]');
+                const hEl = root.querySelector('[data-cd-hours]');
+                const mEl = root.querySelector('[data-cd-minutes]');
+                const sEl = root.querySelector('[data-cd-seconds]');
+                if (dEl) dEl.textContent = String(day);
+                if (hEl) hEl.textContent = pad2(hr);
+                if (mEl) mEl.textContent = pad2(min);
+                if (sEl) sEl.textContent = pad2(sec);
+            });
+        }
+
+        render();
+        setInterval(render, 1000);
+    })();
+
     // Set Footer Year
     const yearElement = document.getElementById('year');
     if (yearElement) {

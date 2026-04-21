@@ -238,6 +238,149 @@ p.lead {
 }
 
 /* =========================================
+   Festival countdown (home + festival page; main.js drives [data-festival-countdown])
+   ========================================= */
+.section-countdown-bridge {
+    padding: 48px 0 52px;
+    background: linear-gradient(180deg, #f0ebe2 0%, var(--color-bg) 100%);
+    border-top: 1px solid rgba(27, 67, 50, 0.12);
+    border-bottom: 1px solid rgba(194, 24, 91, 0.12);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 768px) {
+    .section-countdown-bridge {
+        padding: 36px 0 40px;
+    }
+}
+
+.festival-countdown {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.festival-countdown-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    color: var(--color-lush);
+    margin-bottom: 0.65em;
+    font-weight: 700;
+}
+
+.festival-countdown--bridge .festival-countdown-heading {
+    color: var(--color-lush);
+}
+
+.text-center .festival-countdown-heading::after {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.countdown-units {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(10px, 3vw, 18px);
+    max-width: 520px;
+    margin: 0 auto 1rem;
+}
+
+.cd-unit {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(27, 67, 50, 0.12);
+    border-radius: var(--border-radius);
+    padding: 14px 8px 12px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.festival-countdown--bridge .cd-unit {
+    border-color: rgba(194, 24, 91, 0.15);
+}
+
+.cd-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(1.65rem, 5vw, 2.35rem);
+    font-weight: 700;
+    color: var(--color-magenta);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+}
+
+.cd-label {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(26, 26, 46, 0.65);
+}
+
+.festival-countdown-sub {
+    font-size: 0.9rem;
+    color: rgba(26, 26, 46, 0.75);
+    margin: 0.5rem 0 0;
+    line-height: 1.45;
+}
+
+.festival-countdown-msg {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-lush);
+    margin: 1rem 0 0;
+    line-height: 1.45;
+}
+
+.festival-countdown--home {
+    margin: 0 auto 2.75rem;
+    padding: 1.75rem 1.5rem 1.5rem;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(0, 108, 103, 0.15);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.festival-countdown--home .festival-countdown-heading {
+    margin-top: 0;
+}
+
+.festival-countdown--home .cd-value {
+    color: var(--color-primary);
+}
+
+.festival-countdown--home .festival-countdown-sub {
+    margin-top: 0.75rem;
+}
+
+.festival-countdown-cta {
+    margin: 1.25rem 0 0;
+}
+
+.festival-countdown-cta .btn {
+    margin: 0;
+}
+
+@media (max-width: 420px) {
+    .countdown-units {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.festival-countdown.countdown--live .festival-countdown-sub,
+.festival-countdown.countdown--ended .festival-countdown-sub {
+    display: none;
+}
+
+.festival-countdown.countdown--live .festival-countdown-msg[data-cd-live],
+.festival-countdown.countdown--ended .festival-countdown-msg[data-cd-ended] {
+    margin-top: 0.5rem;
+}
+
+/* =========================================
    Buttons
    ========================================= */
 .btn {
