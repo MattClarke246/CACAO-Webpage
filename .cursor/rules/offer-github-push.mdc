@@ -1,0 +1,19 @@
+---
+description: After code changes, offer to commit and push to GitHub (never push without consent)
+alwaysApply: true
+---
+
+# GitHub push offer (post-change)
+
+When you **finish implementing** a user request that involved **editing, adding, or deleting project files** (HTML, CSS, JS, assets, config, etc.):
+
+1. **Do not** run `git commit` or `git push` unless the user has clearly agreed in this turn or immediately before.
+2. **End your response** by offering the choice, in plain language, for example:
+   - *"Want me to commit these changes and push to GitHub so Vercel can deploy? Say yes and I’ll add, commit, and push (or tell me to skip)."*
+3. If the user **declines** or ignores the offer, leave the repo as-is.
+4. If the user **accepts** (yes / push / commit and push / go ahead):
+   - Stage relevant files (`git add …`), commit with a **short, accurate message**, then `git push` to the tracked remote branch (usually `origin/main`).
+   - If push fails (auth, no remote, conflicts), explain the error and what they can do next; do not force destructive git commands.
+5. **Skip** this offer for **read-only** work: questions only, planning only, explaining code with no edits, or when no files were changed.
+
+This project deploys via Vercel from Git; pushing to GitHub is what triggers a new deployment.
