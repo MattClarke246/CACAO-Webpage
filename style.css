@@ -1029,6 +1029,24 @@ h2::after {
     content: attr(data-initials);
 }
 
+.board-avatar--photo {
+    padding: 0;
+    overflow: hidden;
+    background: rgba(26, 26, 46, 0.5);
+}
+
+.board-avatar--photo::after {
+    content: none;
+}
+
+.board-avatar--photo .board-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    display: block;
+}
+
 .board-card:hover .board-avatar {
     transform: scale(1.08);
     border-color: rgba(255, 199, 87, 0.6);
