@@ -257,14 +257,14 @@ p.lead {
     padding-top: 70px;
 }
 
-/* Sub-page hero banner — shorter, same aesthetic */
+/* Sub-page hero banner — shorter, themed per page */
 .page-hero {
     position: relative;
     width: 100%;
-    min-height: 320px;
+    min-height: 340px;
     background-image: url('assets/images/hero-bg.png');
     background-size: cover;
-    background-position: center top;
+    background-position: center center;
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
@@ -299,6 +299,78 @@ p.lead {
 
 .page-hero .hero-content p {
     font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+}
+
+/* ---- Per-Page Themed Heroes ---- */
+
+/* About → Beach (turquoise tint) */
+.page-hero-about {
+    background-image: url('assets/images/hero-about.png');
+    background-position: center 30%;
+}
+.page-hero-about .overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 119, 182, 0.25) 0%,
+        rgba(0, 77, 122, 0.55) 50%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+}
+
+/* Leadership → Caribbean Food (warm amber tint) */
+.page-hero-leadership {
+    background-image: url('assets/images/hero-leadership.png');
+    background-position: center center;
+}
+.page-hero-leadership .overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(100, 50, 10, 0.2) 0%,
+        rgba(160, 80, 20, 0.5) 50%,
+        rgba(0, 0, 0, 0.82) 100%
+    );
+}
+
+/* Scholarship → Education (golden tint) */
+.page-hero-scholarship {
+    background-image: url('assets/images/hero-scholarship.png');
+    background-position: center 40%;
+}
+.page-hero-scholarship .overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(140, 100, 10, 0.15) 0%,
+        rgba(27, 67, 50, 0.5) 50%,
+        rgba(0, 0, 0, 0.82) 100%
+    );
+}
+
+/* Festival → Carnival (vibrant magenta tint) */
+.page-hero-festival {
+    background-image: url('assets/images/hero-festival.png');
+    background-position: center 25%;
+}
+.page-hero-festival .overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(194, 24, 91, 0.2) 0%,
+        rgba(233, 114, 76, 0.45) 50%,
+        rgba(0, 0, 0, 0.82) 100%
+    );
+}
+
+/* Membership → Music (deep indigo tint) */
+.page-hero-membership {
+    background-image: url('assets/images/hero-membership.png');
+    background-position: center 35%;
+}
+.page-hero-membership .overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(50, 20, 80, 0.2) 0%,
+        rgba(0, 77, 122, 0.5) 50%,
+        rgba(0, 0, 0, 0.82) 100%
+    );
 }
 
 /* Active nav link styling */
