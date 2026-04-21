@@ -21,15 +21,19 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(err => console.error("Could not load events", err));
     */
 
-    // Smooth scroll for anchor links
+    // Smooth scroll for same-page anchor links only
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
+            const href = this.getAttribute('href');
+            // Only intercept pure hash links (#section), not cross-page links (page.html#section)
+            if (href.startsWith('#')) {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
