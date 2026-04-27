@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         honeypot.setAttribute('aria-hidden', 'true');
         contactForm.insertBefore(honeypot, contactForm.firstChild);
 
-        contactForm.addEventListener('submit', function (e) {
+        contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             // Check honeypot — bots fill hidden fields
@@ -198,22 +198,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Persist sanitized values before submit so the email body is clean.
-            document.getElementById('name').value = name;
-            document.getElementById('email').value = email;
-            document.getElementById('subject').value = subject;
-            document.getElementById('message').value = message;
-
             lastSubmitTime = now;
 
             const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Message';
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Sending...';
             }
 
-            // Submit to FormSubmit endpoint (configured in index.html form action).
-            contactForm.submit();
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, subject, message })
+                });
+
+                const payload = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(payload.error || 'Unable to send your message right now.');
+                }
+
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            } catch (err) {
+                const msg = err && err.message ? err.message : 'Unable to send your message right now.';
+                alert(msg + ' Please try again in a moment.');
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
+            }
         });
     }
 });

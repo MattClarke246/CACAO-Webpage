@@ -1,0 +1,12 @@
+{
+  "name": "cacao-web-project",
+  "private": true,
+  "version": "1.0.0",
+  "description": "CACAO static site with Vercel contact API",
+  "scripts": {
+    "dev": "python3 -m http.server 8080"
+  },
+  "dependencies": {
+    "resend": "^6.12.2"
+  }
+}
