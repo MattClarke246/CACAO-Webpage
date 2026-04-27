@@ -198,15 +198,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            // Persist sanitized values before submit so the email body is clean.
+            document.getElementById('name').value = name;
+            document.getElementById('email').value = email;
+            document.getElementById('subject').value = subject;
+            document.getElementById('message').value = message;
+
             lastSubmitTime = now;
 
-            /*
-             * Phase 5: Replace this block with actual form submission logic.
-             * Example: fetch('/api/contact', { method: 'POST', body: JSON.stringify({...}) })
-             * For now, show a success message.
-             */
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+            }
+
+            // Submit to FormSubmit endpoint (configured in index.html form action).
+            contactForm.submit();
         });
     }
 });

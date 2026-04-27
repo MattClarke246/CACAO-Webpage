@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CACAO — Central Alabama Caribbean American Organizations</title>
     <meta name="description" content="Central Alabama Caribbean American Organizations — Celebrating Caribbean culture and raising scholarships for Caribbean American students in Birmingham, Alabama.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; form-action 'self'; base-uri 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; form-action 'self' https://formsubmit.co; base-uri 'self'">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
@@ -180,7 +180,10 @@
             
             <p class="text-white mb-4" style="font-size: 14px; opacity: 0.8;">Donations also accepted via Venmo: <strong>@alcaribbean</strong></p>
 
-            <form class="contact-form" action="#" method="POST" id="custom-contact-form" autocomplete="off">
+            <form class="contact-form" action="https://formsubmit.co/cacaoonline@gmail.com" method="POST" id="custom-contact-form" autocomplete="off">
+                <input type="hidden" name="_subject" value="New CACAO Website Contact Message">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
                 <div class="form-group">
                     <input type="text" id="name" name="name" placeholder="Your Name" required maxlength="100" pattern="[A-Za-z\s\-'.]{1,100}" title="Letters, spaces, hyphens, and apostrophes only">
                 </div>
