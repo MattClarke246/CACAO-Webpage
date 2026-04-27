@@ -1047,6 +1047,11 @@ h2::after {
     display: block;
 }
 
+/* Fine-tune Karisa crop so face sits centered in circular frame */
+.board-avatar--photo .board-photo-karisa {
+    object-position: center center;
+}
+
 .board-card:hover .board-avatar {
     transform: scale(1.08);
     border-color: rgba(255, 199, 87, 0.6);
