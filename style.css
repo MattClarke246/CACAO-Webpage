@@ -566,16 +566,16 @@ p.lead {
     );
 }
 
-/* Leadership → Caribbean Food (warm amber tint) */
+/* Leadership → Caribbean nature (tropical plants scene) */
 .page-hero-leadership {
-    background-image: url('assets/images/hero-leadership.png');
-    background-position: center center;
+    background-image: url('assets/images/hero-about.png');
+    background-position: center 55%;
 }
 .page-hero-leadership .overlay {
     background: linear-gradient(
         to bottom,
-        rgba(100, 50, 10, 0.2) 0%,
-        rgba(160, 80, 20, 0.5) 50%,
+        rgba(20, 70, 40, 0.18) 0%,
+        rgba(18, 58, 34, 0.5) 50%,
         rgba(0, 0, 0, 0.82) 100%
     );
 }
