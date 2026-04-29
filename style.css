@@ -733,6 +733,14 @@ h2::after {
     border: 4px solid rgba(255,199,87,0.4);
 }
 
+/* Keep wider mission group photo from feeling stretched */
+.mission-photo {
+    width: min(100%, 560px);
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* =========================================
    Scholarships Section
    ========================================= */
