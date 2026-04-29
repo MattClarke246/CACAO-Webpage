@@ -70,6 +70,29 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(render, 1000);
     })();
 
+    // ----- Cultural Memories slideshow (rotates every 3 seconds) -----
+    (function initGallerySlideshow() {
+        const root = document.querySelector('[data-gallery-slideshow]');
+        if (!root) return;
+
+        const slides = Array.from(root.querySelectorAll('.gallery-slide'));
+        if (slides.length <= 1) return;
+
+        let idx = slides.findIndex((s) => s.classList.contains('is-active'));
+        if (idx < 0) idx = 0;
+
+        function show(nextIndex) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('is-active', i === nextIndex);
+            });
+        }
+
+        setInterval(() => {
+            idx = (idx + 1) % slides.length;
+            show(idx);
+        }, 3000);
+    })();
+
     // Set Footer Year
     const yearElement = document.getElementById('year');
     if (yearElement) {
