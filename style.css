@@ -1529,6 +1529,17 @@ h2::after {
     color: rgba(255, 255, 255, 0.92);
 }
 
+.festival-application-inline-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.festival-application-inline-link:hover {
+    color: #fff;
+}
+
 .festival-application-note {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.72);
