@@ -117,6 +117,18 @@ p.lead {
     border-bottom: 3px solid rgba(255, 107, 107, 0.4);
 }
 
+/* Membership page — sponsorship callout */
+.section-sponsorship-red {
+    background: linear-gradient(165deg, #7f1d1d 0%, #b91c1c 45%, #991b1b 100%);
+    color: var(--color-white);
+    border-top: 3px solid rgba(255, 199, 87, 0.55);
+    border-bottom: 3px solid rgba(254, 202, 202, 0.35);
+}
+
+.section-sponsorship-red .text-white.lead {
+    color: rgba(255, 255, 255, 0.92);
+}
+
 /* 2026 Festival — flyer below hero; scrim + panels keep copy readable */
 .section-festival-flyer-bg {
     background-color: #120810;
