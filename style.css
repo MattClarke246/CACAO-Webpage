@@ -504,6 +504,7 @@ p.lead {
     position: relative;
     width: 100%;
     height: 100vh;
+    height: 100svh;
     min-height: 650px;
     background-image: url('assets/images/hero-carnival-new.jpg');
     background-size: cover;
@@ -1622,8 +1623,7 @@ h2::after {
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .board-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
     .hero {
-        background-size: 130% auto, cover;
-        background-position: center top, center 36%;
+        background-position: center 36%;
     }
 }
 
@@ -1708,8 +1708,7 @@ h2::after {
 @media (max-width: 600px) {
     .hero {
         min-height: 600px;
-        background-size: 190% auto, cover;
-        background-position: center top, center 44%;
+        background-position: center 44%;
     }
     .hero-actions { flex-direction: column; align-items: center; }
     .scholarship-actions { flex-direction: column; align-items: center; }
