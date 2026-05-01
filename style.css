@@ -517,22 +517,6 @@ p.lead {
     padding-top: 70px;
 }
 
-/* Flags layer — positioned at top, separated from the background */
-.hero-flags {
-    position: absolute;
-    top: 70px; /* Below the navbar */
-    left: 0;
-    right: 0;
-    height: 200px;
-    background-image: url('assets/images/hero-bg.png');
-    background-size: 100% auto;
-    background-position: center top;
-    background-repeat: no-repeat;
-    z-index: 2;
-    /* Use screen blend to only keep the bright flags, not the dark parts */
-    mix-blend-mode: screen;
-    pointer-events: none;
-}
 
 /* Sub-page hero banner — shorter, themed per page */
 .page-hero {
