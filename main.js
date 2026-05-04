@@ -258,4 +258,144 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // =========================================
+    // PARADE REGISTRATION MODAL
+    // =========================================
+    const paradeModal = document.getElementById('parade-modal');
+    const openParadeBtn = document.getElementById('open-parade-modal');
+    const closeParadeBtn = document.getElementById('close-parade-modal');
+    const paradeForm = document.getElementById('parade-registration-form');
+    const groupFields = document.getElementById('group-fields');
+
+    function openParadeModal() {
+        if (!paradeModal) return;
+        paradeModal.classList.add('is-open');
+        paradeModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeParadeModal() {
+        if (!paradeModal) return;
+        paradeModal.classList.remove('is-open');
+        paradeModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    if (openParadeBtn) {
+        openParadeBtn.addEventListener('click', openParadeModal);
+    }
+
+    if (closeParadeBtn) {
+        closeParadeBtn.addEventListener('click', closeParadeModal);
+    }
+
+    // Close on overlay click (not modal body)
+    if (paradeModal) {
+        paradeModal.addEventListener('click', function (e) {
+            if (e.target === paradeModal) closeParadeModal();
+        });
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && paradeModal && paradeModal.classList.contains('is-open')) {
+            closeParadeModal();
+        }
+    });
+
+    // Toggle group fields based on radio selection
+    if (paradeForm && groupFields) {
+        const radios = paradeForm.querySelectorAll('input[name="registrationType"]');
+        radios.forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                if (this.value === 'group') {
+                    groupFields.style.display = 'block';
+                    document.getElementById('parade-org-name').required = true;
+                } else {
+                    groupFields.style.display = 'none';
+                    document.getElementById('parade-org-name').required = false;
+                }
+            });
+        });
+    }
+
+    // Auto-open modal if coming from membership page with #open-parade
+    if (window.location.hash === '#open-parade' && paradeModal) {
+        setTimeout(openParadeModal, 400);
+    }
+
+    // Parade form submission
+    let paradeLastSubmitTime = 0;
+    if (paradeForm) {
+        paradeForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const now = Date.now();
+            if (now - paradeLastSubmitTime < RATE_LIMIT_MS) {
+                const wait = Math.ceil((RATE_LIMIT_MS - (now - paradeLastSubmitTime)) / 1000);
+                alert('Please wait ' + wait + ' seconds before submitting again.');
+                return;
+            }
+
+            const firstName = sanitizeInput(document.getElementById('parade-first-name').value.trim());
+            const lastName = sanitizeInput(document.getElementById('parade-last-name').value.trim());
+            const email = sanitizeInput(document.getElementById('parade-email').value.trim());
+            const phone = sanitizeInput(document.getElementById('parade-phone').value.trim());
+            const registrationType = paradeForm.querySelector('input[name="registrationType"]:checked').value;
+            const orgName = sanitizeInput((document.getElementById('parade-org-name').value || '').trim());
+            const groupSize = sanitizeInput((document.getElementById('parade-group-size').value || '').trim());
+
+            if (!firstName || !lastName || !email || !phone) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            if (registrationType === 'group' && !orgName) {
+                alert('Please enter your organization or band name.');
+                return;
+            }
+
+            paradeLastSubmitTime = now;
+
+            const submitBtn = document.getElementById('parade-submit-btn');
+            const originalText = submitBtn ? submitBtn.textContent : 'Submit Registration';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+            }
+
+            try {
+                const response = await fetch('/api/parade-registration', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ firstName, lastName, email, phone, registrationType, orgName, groupSize })
+                });
+
+                const payload = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(payload.error || 'Unable to submit registration right now.');
+                }
+
+                // Show success state
+                paradeForm.style.display = 'none';
+                document.getElementById('parade-success').style.display = 'block';
+            } catch (err) {
+                const msg = err && err.message ? err.message : 'Unable to submit registration right now.';
+                alert(msg + ' Please try again in a moment.');
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            }
+        });
+    }
 });

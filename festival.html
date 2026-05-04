@@ -88,11 +88,94 @@
             
             <div class="hero-actions festival-actions mt-4">
                 <a href="https://www.eventbrite.com/e/marvel-city-caribbean-food-and-music-festival-tickets-1839231824899?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer" class="btn btn-accent">Get Tickets (Eventbrite)</a>
-                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Parade Band Registration</a>
+                <button type="button" class="btn btn-secondary" id="open-parade-modal">Parade Band Registration</button>
                 <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Vendor Application</a>
             </div>
         </div>
     </section>
+
+    <!-- ===== PARADE REGISTRATION MODAL ===== -->
+    <div class="modal-overlay" id="parade-modal" aria-hidden="true" role="dialog" aria-labelledby="parade-modal-title">
+        <div class="modal-container">
+            <button type="button" class="modal-close" id="close-parade-modal" aria-label="Close registration form">&times;</button>
+            
+            <div class="modal-header">
+                <h2 id="parade-modal-title">🎭 Parade Band Registration</h2>
+                <p>Register to march in the Marvel City Caribbean Festival parade on June 6, 2026.</p>
+            </div>
+
+            <form class="modal-form" id="parade-registration-form" autocomplete="off">
+                <div class="modal-form-row">
+                    <div class="form-group">
+                        <label for="parade-first-name">First Name <span class="required">*</span></label>
+                        <input type="text" id="parade-first-name" name="firstName" required maxlength="50" placeholder="First name">
+                    </div>
+                    <div class="form-group">
+                        <label for="parade-last-name">Last Name <span class="required">*</span></label>
+                        <input type="text" id="parade-last-name" name="lastName" required maxlength="50" placeholder="Last name">
+                    </div>
+                </div>
+
+                <div class="modal-form-row">
+                    <div class="form-group">
+                        <label for="parade-email">Email <span class="required">*</span></label>
+                        <input type="email" id="parade-email" name="email" required maxlength="254" placeholder="you@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="parade-phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="parade-phone" name="phone" required maxlength="20" placeholder="(205) 555-1234">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Registration Type <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="registrationType" value="individual" checked>
+                            <span class="radio-label">Individual</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="registrationType" value="group">
+                            <span class="radio-label">Group / Band</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group group-fields" id="group-fields" style="display: none;">
+                    <label for="parade-org-name">Organization / Band Name <span class="required">*</span></label>
+                    <input type="text" id="parade-org-name" name="orgName" maxlength="100" placeholder="Name of your group or band">
+                    <div style="margin-top: 12px;">
+                        <label for="parade-group-size">Number of People in Group</label>
+                        <input type="number" id="parade-group-size" name="groupSize" min="2" max="500" placeholder="e.g. 15">
+                    </div>
+                </div>
+
+                <div class="modal-payment-notice">
+                    <div class="payment-icon">💵</div>
+                    <div>
+                        <strong>Payment is required via Cash App or Venmo</strong>
+                        <p>After submitting, send your registration fee to <strong>@alcaribbean</strong> on Cash App or Venmo. Include your name and "Parade Registration" in the memo.</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-accent btn-full" id="parade-submit-btn">Submit Registration</button>
+            </form>
+
+            <div class="modal-success" id="parade-success" style="display: none;">
+                <div class="success-icon">✅</div>
+                <h3>Registration Submitted!</h3>
+                <p>Thank you for registering. CACAO will be in touch with parade lineup details.</p>
+                <div class="modal-payment-notice" style="margin-top: 20px;">
+                    <div class="payment-icon">💵</div>
+                    <div>
+                        <strong>Don't forget to send payment!</strong>
+                        <p>Send your registration fee to <strong>@alcaribbean</strong> on Cash App or Venmo. Include your name and "Parade Registration" in the memo.</p>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-lush" onclick="document.getElementById('parade-modal').classList.remove('is-open'); document.getElementById('parade-modal').setAttribute('aria-hidden','true'); document.body.style.overflow='';">Close</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ===== WHAT TO EXPECT ===== -->
     <section class="section section-panel text-center">
