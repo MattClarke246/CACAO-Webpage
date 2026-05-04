@@ -280,6 +280,17 @@ document.addEventListener('DOMContentLoaded', () => {
         paradeModal.classList.remove('is-open');
         paradeModal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        
+        // Reset form and UI state after closing animation
+        setTimeout(() => {
+            if (paradeForm) {
+                paradeForm.reset();
+                paradeForm.style.display = 'block';
+            }
+            const successView = document.getElementById('parade-success');
+            if (successView) successView.style.display = 'none';
+            if (groupFields) groupFields.style.display = 'none';
+        }, 300);
     }
 
     if (openParadeBtn) {
@@ -288,6 +299,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (closeParadeBtn) {
         closeParadeBtn.addEventListener('click', closeParadeModal);
+    }
+
+    const closeSuccessBtn = document.getElementById('close-success-btn');
+    if (closeSuccessBtn) {
+        closeSuccessBtn.addEventListener('click', closeParadeModal);
     }
 
     // Close on overlay click (not modal body)
