@@ -1805,8 +1805,16 @@ h2::after {
 /* Modal responsive */
 @media (max-width: 600px) {
     .modal-container {
-        padding: 28px 20px;
-        max-height: 95vh;
+        padding: 40px 20px;
+        max-height: 85vh;
+        max-height: 85dvh;
+    }
+    .modal-close {
+        top: 8px;
+        right: 8px;
+        padding: 12px;
+        font-size: 32px;
+        z-index: 10;
     }
     .modal-form-row {
         grid-template-columns: 1fr;
