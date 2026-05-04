@@ -2,6 +2,28 @@ const { Resend } = require("resend");
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Server-side rate limiting (per IP, per 60 seconds)
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW_MS = 60000;
+const RATE_LIMIT_MAX = 3; // max 3 submissions per minute per IP
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || now - record.windowStart > RATE_LIMIT_WINDOW_MS) {
+    rateLimitMap.set(ip, { windowStart: now, count: 1 });
+    return false;
+  }
+  record.count++;
+  if (record.count > RATE_LIMIT_MAX) return true;
+  return false;
+}
+
+// Strip HTML tags to prevent injection in emails
+function stripHtml(str) {
+  return String(str).replace(/<[^>]*>/g, "");
+}
+
 function parseBody(req) {
   if (!req || !req.body) return {};
   if (typeof req.body === "string") {
@@ -20,11 +42,30 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
+  // Reject oversized payloads (> 10 KB)
+  const contentLength = parseInt(req.headers["content-length"] || "0", 10);
+  if (contentLength > 10240) {
+    return res.status(413).json({ error: "Payload too large." });
+  }
+
+  // Server-side rate limiting
+  const clientIp = req.headers["x-forwarded-for"] || req.socket?.remoteAddress || "unknown";
+  if (isRateLimited(clientIp)) {
+    return res.status(429).json({ error: "Too many submissions. Please wait a minute." });
+  }
+
   const body = parseBody(req);
-  const name = String(body.name || "").trim();
-  const email = String(body.email || "").trim();
-  const subject = String(body.subject || "").trim();
-  const message = String(body.message || "").trim();
+
+  // Honeypot check (bots fill this hidden field)
+  if (body.website_url) {
+    // Silently reject — don't reveal to bots
+    return res.status(200).json({ ok: true });
+  }
+
+  const name = stripHtml(String(body.name || "").trim()).slice(0, 100);
+  const email = stripHtml(String(body.email || "").trim()).slice(0, 254);
+  const subject = stripHtml(String(body.subject || "").trim()).slice(0, 200);
+  const message = stripHtml(String(body.message || "").trim()).slice(0, 2000);
 
   if (!name || !email || !message) {
     return res.status(400).json({ error: "Name, email, and message are required." });
