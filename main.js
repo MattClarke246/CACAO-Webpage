@@ -420,7 +420,127 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
+    // =========================================
+    // MEMBERSHIP MODAL
+    // =========================================
+    const membershipModal = document.getElementById('membership-modal');
+    const openMembershipBtn = document.getElementById('open-membership-modal');
+    const closeMembershipBtns = [
+        document.getElementById('close-membership-modal'),
+        document.getElementById('close-member-success-btn')
+    ];
+    const membershipForm = document.getElementById('membership-registration-form');
+    const membershipFormView = document.getElementById('membership-form-view');
+    const membershipSuccessView = document.getElementById('membership-success');
+
+    function openMembershipModal() {
+        if (!membershipModal) return;
+        membershipModal.classList.add('is-open');
+        membershipModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMembershipModal() {
+        if (!membershipModal) return;
+        membershipModal.classList.remove('is-open');
+        membershipModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        
+        setTimeout(() => {
+            if (membershipForm) membershipForm.reset();
+            if (membershipFormView) membershipFormView.style.display = 'block';
+            if (membershipSuccessView) membershipSuccessView.style.display = 'none';
+        }, 300);
+    }
+
+    if (openMembershipBtn) {
+        openMembershipBtn.addEventListener('click', openMembershipModal);
+    }
+
+    closeMembershipBtns.forEach(btn => {
+        if (btn) btn.addEventListener('click', closeMembershipModal);
+    });
+
+    if (membershipModal) {
+        membershipModal.addEventListener('click', function (e) {
+            if (e.target === membershipModal) closeMembershipModal();
+        });
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && membershipModal && membershipModal.classList.contains('is-open')) {
+            closeMembershipModal();
+        }
+    });
+
+    let membershipLastSubmitTime = 0;
+    if (membershipForm) {
+        membershipForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const now = Date.now();
+            if (now - membershipLastSubmitTime < RATE_LIMIT_MS) {
+                const wait = Math.ceil((RATE_LIMIT_MS - (now - membershipLastSubmitTime)) / 1000);
+                alert('Please wait ' + wait + ' seconds before submitting again.');
+                return;
+            }
+
+            const firstName = sanitizeInput(document.getElementById('member-first-name').value.trim());
+            const lastName = sanitizeInput(document.getElementById('member-last-name').value.trim());
+            const email = sanitizeInput(document.getElementById('member-email').value.trim());
+            const phone = sanitizeInput(document.getElementById('member-phone').value.trim());
+            const planEl = document.getElementById('member-plan');
+            const membershipPlan = sanitizeInput(planEl.options[planEl.selectedIndex].value);
+
+            if (!firstName || !lastName || !email || !phone || !membershipPlan) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            membershipLastSubmitTime = now;
+
+            const submitBtn = document.getElementById('member-submit-btn');
+            const originalText = submitBtn ? submitBtn.textContent : 'Submit Application';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+            }
+
+            try {
+                const response = await fetch('/api/membership-registration', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ firstName, lastName, email, phone, membershipPlan })
+                });
+
+                const payload = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(payload.error || 'Unable to submit application right now.');
+                }
+
+                // Show success state
+                if (membershipFormView) membershipFormView.style.display = 'none';
+                if (membershipSuccessView) membershipSuccessView.style.display = 'block';
+            } catch (err) {
+                const msg = err && err.message ? err.message : 'Unable to submit application right now.';
+                alert(msg + ' Please try again in a moment.');
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            }
+        });
+    }
+
     // =========================================
     // Back to Top Button
     // =========================================

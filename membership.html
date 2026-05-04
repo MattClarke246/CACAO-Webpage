@@ -96,7 +96,7 @@
             </div>
 
             <div class="membership-actions hero-actions">
-                <a href="https://www.paypal.com/donate?hosted_button_id=36M7UYLYET7TJ&amp;source=qr" target="_blank" rel="noopener noreferrer" class="btn btn-lush">Apply Online</a>
+                <button type="button" class="btn btn-lush" id="open-membership-modal">Apply Online</button>
                 <a href="assets/CACAO-Membership.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-membership-outline">Download Mail-in Form</a>
             </div>
 
@@ -121,6 +121,81 @@
             <p class="text-center membership-contact-note">Questions about membership? Use <a href="index.html#contact">Contact</a> on our homepage.</p>
         </div>
     </section>
+
+    <!-- ===== MEMBERSHIP MODAL ===== -->
+    <div class="modal-overlay" id="membership-modal" aria-hidden="true" role="dialog" aria-labelledby="membership-modal-title">
+        <div class="modal-container">
+            <button class="modal-close" id="close-membership-modal" aria-label="Close modal">&times;</button>
+            
+            <!-- Default Form View -->
+            <div id="membership-form-view">
+                <div class="modal-header">
+                    <h2 id="membership-modal-title">Join CACAO</h2>
+                    <p>Register your membership and support our community.</p>
+                </div>
+                <form class="modal-form" id="membership-registration-form" autocomplete="off">
+                    <div class="modal-form-row">
+                        <div class="form-group">
+                            <label for="member-first-name">First Name <span class="required">*</span></label>
+                            <input type="text" id="member-first-name" required maxlength="50" pattern="[A-Za-z\s\-'.]{1,50}">
+                        </div>
+                        <div class="form-group">
+                            <label for="member-last-name">Last Name <span class="required">*</span></label>
+                            <input type="text" id="member-last-name" required maxlength="50" pattern="[A-Za-z\s\-'.]{1,50}">
+                        </div>
+                    </div>
+                    <div class="modal-form-row">
+                        <div class="form-group">
+                            <label for="member-email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="member-email" required maxlength="254">
+                        </div>
+                        <div class="form-group">
+                            <label for="member-phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="member-phone" required maxlength="20">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label>Select Membership Plan <span class="required">*</span></label>
+                        <select id="member-plan" required style="width: 100%; padding: 14px 16px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(0, 0, 0, 0.2); color: white; font-family: var(--font-body); font-size: 15px;">
+                            <option value="" disabled selected>Choose a plan...</option>
+                            <option value="Individual ($25)">Individual plan ($25)</option>
+                            <option value="Couple ($40)">Couple plan ($40)</option>
+                            <option value="Family A ($40)">Family plan A ($40)</option>
+                            <option value="Family B ($50)">Family plan B ($50)</option>
+                            <option value="Family B+ ($50 + $10/person)">Family plan B+ ($50 + $10/additional person)</option>
+                            <option value="Student (Free)">University enrolled Caribbean student (Free)</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-payment-notice">
+                        <div class="payment-icon">💵</div>
+                        <div>
+                            <strong>Registration Dues Required</strong>
+                            <p>After submitting, please send your dues to <strong>@alcaribbean</strong> on Cash App or Venmo. Include your name and chosen plan in the memo.</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-accent btn-full" id="member-submit-btn">Submit Application</button>
+                </form>
+            </div>
+
+            <!-- Success View -->
+            <div class="modal-success" id="membership-success" style="display: none;">
+                <div class="success-icon">🎉</div>
+                <h3>Welcome to the Family!</h3>
+                <p>Your membership application has been received.</p>
+                <div class="modal-payment-notice" style="margin-top: 20px;">
+                    <div class="payment-icon">💵</div>
+                    <div>
+                        <strong>Don't forget to send your dues!</strong>
+                        <p>Send your payment to <strong>@alcaribbean</strong> on Cash App or Venmo. Include your name and plan in the memo.</p>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-lush" id="close-member-success-btn">Close</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ===== FESTIVAL APPLICATIONS ===== -->
     <section id="festival-applications" class="section section-glass-dark text-center">
