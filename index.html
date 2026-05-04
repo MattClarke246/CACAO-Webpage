@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/jpeg" href="assets/images/cacao-logo.jpeg">
     <link rel="apple-touch-icon" href="assets/images/cacao-logo.jpeg">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cacao-webpage.vercel.app/">
+    <meta property="og:title" content="CACAO — Central Alabama Caribbean American Organizations">
+    <meta property="og:description" content="Central Alabama Caribbean American Organizations — Celebrating Caribbean culture and raising scholarships for Caribbean American students in Birmingham, Alabama.">
+    <meta property="og:image" content="https://cacao-webpage.vercel.app/assets/images/hero-carnival-new.jpg">
 </head>
 <body>
 
@@ -211,6 +218,11 @@
                 </div>
                 <button type="submit" class="btn btn-accent btn-full">Send Message</button>
             </form>
+            <div id="contact-success" class="contact-form" style="display: none; text-align: center; border-color: rgba(255,199,87,0.5);">
+                <div style="font-size: 48px; margin-bottom: 16px;">✉️</div>
+                <h3 style="color: var(--color-white); font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 8px;">Message Sent</h3>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 0;">Thank you for reaching out! We've received your message and will get back to you shortly.</p>
+            </div>
         </div>
     </section>
 
@@ -245,6 +257,11 @@
         </div>
     </footer>
 
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+    </button>
     <script src="main.js"></script>
 </body>
 </html>

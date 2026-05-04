@@ -245,7 +245,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     throw new Error(payload.error || 'Unable to send your message right now.');
                 }
 
-                alert('Thank you for your message! We will get back to you soon.');
+                const successView = document.getElementById('contact-success');
+                if (successView) {
+                    contactForm.style.display = 'none';
+                    successView.style.display = 'block';
+                } else {
+                    alert('Thank you for your message! We will get back to you soon.');
+                }
                 contactForm.reset();
             } catch (err) {
                 const msg = err && err.message ? err.message : 'Unable to send your message right now.';
@@ -413,5 +419,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
+    }
+    
+    // =========================================
+    // Back to Top Button
+    // =========================================
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // =========================================
+    // Animated Stat Counters
+    // =========================================
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    if (statNumbers.length > 0) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-target'), 10);
+                    const duration = 2000;
+                    const stepTime = Math.max(Math.floor(duration / target), 10);
+                    let current = 0;
+                    
+                    const isPercentage = el.getAttribute('data-target') === '100'; // Specific to the 100%
+                    
+                    const timer = setInterval(() => {
+                        current += Math.ceil(target / (duration / stepTime));
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        el.textContent = current + (isPercentage ? '%' : '');
+                    }, stepTime);
+                    obs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statNumbers.forEach(num => observer.observe(num));
     }
 });
