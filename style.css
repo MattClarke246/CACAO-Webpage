@@ -711,6 +711,19 @@ p.lead {
     );
 }
 
+/* Legal / Policy Pages */
+.page-hero-legal {
+    background-image: url('assets/images/hero-carnival-new.jpg');
+    background-position: center 25%;
+}
+.page-hero-legal .overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 108, 103, 0.75) 0%,
+        rgba(26, 26, 46, 0.9) 100%
+    );
+}
+
 /* Active nav link styling */
 .nav-links a.active {
     color: var(--color-accent);
@@ -2088,6 +2101,32 @@ h2::after {
     color: var(--color-accent);
 }
 
+.footer-legal-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 14px 0 10px;
+}
+
+.footer-legal-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+}
+
+.footer-legal-links a:hover {
+    color: var(--color-accent);
+}
+
+.footer-legal-divider {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 12px;
+}
+
 .footer-creator {
     font-size: 0.85em;
     opacity: 0.7;
@@ -2105,6 +2144,112 @@ h2::after {
 .footer-creator a:hover {
     color: var(--color-accent);
 }
+
+/* =========================================
+   Legal & Policy Pages
+   ========================================= */
+.legal-wrapper {
+    background: #FFFFFF;
+    border-radius: var(--border-radius);
+    padding: 48px 40px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 108, 103, 0.1);
+}
+
+@media (max-width: 600px) {
+    .legal-wrapper {
+        padding: 28px 20px;
+    }
+}
+
+.legal-meta {
+    display: inline-block;
+    background: rgba(0, 108, 103, 0.08);
+    color: var(--color-primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.legal-section {
+    margin-bottom: 40px;
+}
+
+.legal-section:last-child {
+    margin-bottom: 0;
+}
+
+.legal-section h2 {
+    font-size: 1.5rem;
+    color: var(--color-lush);
+    border-bottom: 2px solid rgba(255, 200, 87, 0.6);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.legal-section h3 {
+    font-size: 1.2rem;
+    color: var(--color-primary);
+    margin: 20px 0 10px;
+}
+
+.legal-section p {
+    margin-bottom: 14px;
+    color: #2D3748;
+    line-height: 1.75;
+}
+
+.legal-section ul, .legal-section ol {
+    margin: 12px 0 16px 24px;
+    color: #2D3748;
+}
+
+.legal-section li {
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+.legal-callout {
+    background: #F4FAF8;
+    border-left: 4px solid var(--color-primary);
+    padding: 20px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 24px 0;
+}
+
+.legal-callout h4 {
+    color: var(--color-primary);
+    margin-bottom: 6px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+}
+
+.legal-callout p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+.legal-contact-card {
+    background: #FBF7EE;
+    border: 1px solid rgba(255, 183, 3, 0.4);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 24px;
+}
+
+.legal-contact-card h4 {
+    color: var(--color-lush);
+    margin-bottom: 12px;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+}
+
+.legal-contact-card p {
+    margin-bottom: 6px;
+}
+
 
 /* =========================================
    Responsive

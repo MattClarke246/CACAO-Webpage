@@ -24,4 +24,16 @@
     <loc>https://www.cacaoonline.org/membership.html</loc>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.cacaoonline.org/privacy.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cacaoonline.org/terms.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.cacaoonline.org/accessibility.html</loc>
+    <priority>0.5</priority>
+  </url>
 </urlset>
