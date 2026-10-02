@@ -104,18 +104,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinksList = document.getElementById('nav-links');
 
     if (hamburger && navLinksList) {
-        hamburger.addEventListener('click', () => {
-            navLinksList.classList.toggle('nav-active');
-            hamburger.classList.toggle('toggle');
-        });
+        let backdrop = document.querySelector('.nav-backdrop');
+        if (!backdrop) {
+            backdrop = document.createElement('div');
+            backdrop.className = 'nav-backdrop';
+            document.body.appendChild(backdrop);
+        }
+
+        const closeMenu = () => {
+            navLinksList.classList.remove('nav-active');
+            hamburger.classList.remove('toggle');
+            backdrop.classList.remove('nav-backdrop--active');
+            document.body.classList.remove('nav-open');
+        };
+
+        const toggleMenu = () => {
+            const isOpen = navLinksList.classList.toggle('nav-active');
+            hamburger.classList.toggle('toggle', isOpen);
+            backdrop.classList.toggle('nav-backdrop--active', isOpen);
+            document.body.classList.toggle('nav-open', isOpen);
+        };
+
+        hamburger.addEventListener('click', toggleMenu);
+        backdrop.addEventListener('click', closeMenu);
 
         // Close menu when a link is clicked
         const navItems = navLinksList.querySelectorAll('a');
         navItems.forEach(item => {
             item.addEventListener('click', () => {
-                navLinksList.classList.remove('nav-active');
-                hamburger.classList.remove('toggle');
+                closeMenu();
             });
+        });
+
+        // Close menu when Escape key is pressed
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinksList.classList.contains('nav-active')) {
+                closeMenu();
+            }
         });
     }
 
@@ -141,13 +166,16 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             // Only intercept pure hash links (#section), not cross-page links (page.html#section)
-            if (href.startsWith('#')) {
+            if (href && href.startsWith('#') && href.length > 1) {
                 const target = document.querySelector(href);
                 if (target) {
                     e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    // Small delay to allow mobile navigation drawer dismissal and body scroll unlock
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }, 60);
                 }
             }
         });

@@ -27,7 +27,10 @@
    ========================================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
 
 body {
     font-family: var(--font-body);
@@ -572,6 +575,94 @@ p.lead {
     letter-spacing: 0.5px;
 }
 .nav-links a:hover { color: var(--color-accent); }
+
+/* Navigation Submenu Dropdown (Desktop) */
+.nav-item-dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.nav-caret {
+    font-size: 10px;
+    display: inline-block;
+    transition: transform 0.25s ease;
+    opacity: 0.85;
+}
+
+.nav-item-dropdown:hover .nav-caret,
+.nav-item-dropdown:focus-within .nav-caret {
+    transform: rotate(180deg);
+}
+
+.nav-submenu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: rgba(18, 48, 36, 0.98);
+    border: 1px solid rgba(255, 199, 87, 0.35);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    min-width: 220px;
+    padding: 8px;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 1020;
+}
+
+.nav-submenu::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+}
+
+.nav-item-dropdown:hover .nav-submenu,
+.nav-item-dropdown:focus-within .nav-submenu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-submenu li {
+    list-style: none;
+    margin: 2px 0;
+    width: 100%;
+}
+
+.nav-submenu a.submenu-link {
+    display: block;
+    padding: 8px 14px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    text-align: left;
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.nav-submenu a.submenu-link:hover,
+.nav-submenu a.submenu-link:focus {
+    background: rgba(255, 199, 87, 0.18);
+    color: var(--color-accent);
+    transform: translateX(2px);
+}
 
 /* =========================================
    Hero Section — FIXED for full-screen flag visibility
@@ -1774,18 +1865,44 @@ h2::after {
     opacity: 0.85;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
+    .perk-card {
+        min-height: auto;
+    }
+    .perk-card-bg {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+    .perk-card-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
     .perk-card-overlay {
-        background: linear-gradient(
-            180deg,
-            rgba(255, 255, 255, 0.97) 0%,
-            rgba(255, 255, 255, 0.93) 70%,
-            rgba(255, 255, 255, 0.84) 100%
-        );
+        display: none;
+    }
+    .perk-card-body {
+        position: relative;
+        background: #ffffff;
     }
     .perk-card-content {
         max-width: 100%;
-        padding: 20px 20px 16px;
+        padding: 20px 20px 18px;
+    }
+    .perk-card-title {
+        font-size: 1.45rem;
+    }
+    .perk-card-discount {
+        font-size: 2.2rem;
+        margin: 4px 0 8px;
+    }
+    .perk-card-desc {
+        font-size: 0.92rem;
+        line-height: 1.55;
     }
     .perk-card-footer {
         padding: 12px 18px;
@@ -2485,6 +2602,28 @@ h2::after {
     transition: all 0.3s ease;
 }
 
+/* Backdrop dim overlay for mobile drawer */
+.nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 25, 20, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.nav-backdrop.nav-backdrop--active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+body.nav-open {
+    overflow: hidden;
+}
+
 @media (max-width: 950px) {
     .hamburger {
         display: flex; /* Show the hamburger */
@@ -2495,17 +2634,21 @@ h2::after {
         top: 0;
         right: -100%;
         height: 100vh;
-        width: 300px;
-        background: rgba(26, 26, 46, 0.98); /* Solid dark theme for contrast */
+        width: min(340px, 86vw);
+        background: rgba(20, 50, 38, 0.98); /* Rich tropical deep green matching navbar */
         border-left: 2px solid rgba(255, 199, 87, 0.4);
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        padding-top: 100px;
-        padding-bottom: 50px;
-        overflow-y: auto; /* Allow scrolling for long link list */
-        transition: right 0.4s ease;
-        box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+        padding-top: 52px;
+        padding-bottom: 24px;
+        padding-left: 18px;
+        padding-right: 18px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: -8px 0 35px rgba(0, 0, 0, 0.55);
+        z-index: 1000;
     }
     
     .nav-links.nav-active {
@@ -2515,21 +2658,91 @@ h2::after {
     .nav-links li {
         width: 100%;
         text-align: center;
-        margin: 10px 0;
+        margin: 1px 0;
         display: flex;
         justify-content: center;
+    }
+
+    .nav-links li.nav-item-dropdown {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links .nav-dropdown-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--color-accent);
+        font-weight: 700;
+    }
+
+    .nav-links .nav-dropdown-toggle .nav-caret {
+        transform: rotate(180deg);
+        color: var(--color-accent);
+    }
+
+    .nav-submenu {
+        position: static;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        display: flex;
+        flex-direction: column;
+        width: 96%;
+        margin: 4px 0 8px;
+        padding: 6px 8px;
+        background: rgba(10, 32, 24, 0.75);
+        border: 1px solid rgba(255, 199, 87, 0.25);
+        border-left: 3px solid var(--color-accent);
+        border-radius: 10px;
+        box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.25);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        min-width: 0;
+    }
+
+    .nav-submenu::before {
+        display: none;
+    }
+
+    .nav-submenu li {
+        width: 100%;
+        display: block;
+        margin: 2px 0;
+        text-align: left;
+    }
+
+    .nav-submenu a.submenu-link {
+        display: block;
+        padding: 7px 10px;
+        font-size: 13.5px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        text-align: left;
+        border-radius: 6px;
+        letter-spacing: 0.2px;
+        transition: background 0.15s ease, color 0.15s ease, padding-left 0.15s ease;
+    }
+
+    .nav-submenu a.submenu-link:hover,
+    .nav-submenu a.submenu-link:active {
+        background: rgba(255, 199, 87, 0.2);
+        color: var(--color-accent);
+        padding-left: 14px;
     }
     
     .nav-links a {
         display: block;
-        padding: 15px 0;
-        font-size: 18px;
+        padding: 7px 0;
+        font-size: 15.5px;
     }
     
     .nav-links .btn {
-        width: 80%;
-        padding: 15px 0 !important;
+        width: 88%;
+        padding: 9px 0 !important;
         margin-left: 0 !important;
+        margin-top: 5px;
     }
 
     /* Hamburger Animation to 'X' */
