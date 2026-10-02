@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ----- Festival countdown (June 6, 2026, 11:00 AM – 9:00 PM Central) -----
+    // ----- Festival countdown (June 5, 2027, 11:00 AM – 9:00 PM Central) -----
     (function initFestivalCountdown() {
         const roots = document.querySelectorAll('[data-festival-countdown]');
         if (!roots.length) return;
 
-        // 11:00 AM CDT → 16:00 UTC; 9:00 PM CDT June 6 → 02:00 UTC June 7
-        const FESTIVAL_START = new Date('2026-06-06T16:00:00Z');
-        const FESTIVAL_END = new Date('2026-06-07T02:00:00Z');
+        // 11:00 AM CDT → 16:00 UTC; 9:00 PM CDT June 5 → 02:00 UTC June 6
+        const FESTIVAL_START = new Date('2027-06-05T16:00:00Z');
+        const FESTIVAL_END = new Date('2027-06-06T02:00:00Z');
 
         function pad2(n) {
             return String(Math.max(0, n)).padStart(2, '0');

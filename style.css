@@ -129,10 +129,10 @@ p.lead {
     color: rgba(255, 255, 255, 0.92);
 }
 
-/* 2026 Festival — flyer below hero; scrim + panels keep copy readable */
+/* 2027 Festival — flyer below hero; scrim + panels keep copy readable */
 .section-festival-flyer-bg {
     background-color: #120810;
-    background-image: url('assets/images/2026-festival-flyer.png');
+    background-image: url('assets/images/2027-festival-flyer.jpg');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
