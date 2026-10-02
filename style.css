@@ -1581,6 +1581,218 @@ h2::after {
     }
 }
 
+/* =========================================
+   Membership Perks & Partner Discounts Drive
+   ========================================= */
+.membership-perks-wrap {
+    margin-top: 3.5rem;
+    padding-top: 2.75rem;
+    border-top: 1px solid rgba(0, 108, 103, 0.14);
+}
+
+.membership-perks-header {
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+}
+
+.perks-badge {
+    display: inline-block;
+    background: rgba(0, 108, 103, 0.1);
+    color: var(--color-lush);
+    border: 1px solid rgba(0, 108, 103, 0.25);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 16px;
+    border-radius: 50px;
+    margin-bottom: 12px;
+}
+
+.membership-perks-heading {
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+    color: var(--color-lush);
+    margin: 0 0 0.75rem;
+}
+
+.membership-perks-sub {
+    font-size: 1.05rem;
+    color: rgba(26, 26, 46, 0.78);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.membership-perks-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.perk-card {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(0, 108, 103, 0.16);
+    box-shadow: 0 8px 24px rgba(27, 67, 50, 0.07);
+    display: flex;
+    flex-direction: column;
+    min-height: 270px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.perk-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(27, 67, 50, 0.14);
+    border-color: rgba(0, 108, 103, 0.32);
+}
+
+.perk-card-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.perk-card-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    display: block;
+}
+
+.perk-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 255, 255, 0.94) 48%,
+        rgba(255, 255, 255, 0.50) 78%,
+        rgba(255, 255, 255, 0.20) 100%
+    );
+}
+
+.perk-card-body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex: 1;
+}
+
+.perk-card-content {
+    padding: 26px 32px 20px;
+    max-width: 64%;
+}
+
+.perk-partner-tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-lush);
+    margin-bottom: 6px;
+}
+
+.perk-card-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    font-weight: 900;
+    color: #111827;
+    margin: 0 0 2px;
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+}
+
+.perk-card-discount {
+    font-size: clamp(2.1rem, 4vw, 2.85rem);
+    font-weight: 900;
+    color: #008b8b;
+    line-height: 1;
+    margin: 4px 0 10px;
+    letter-spacing: -0.01em;
+}
+
+.perk-card-ribbon {
+    display: inline-block;
+    background: linear-gradient(135deg, #008b8b 0%, #00a896 100%);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 139, 139, 0.25);
+}
+
+.perk-card-desc {
+    font-size: 0.94rem;
+    line-height: 1.55;
+    color: #334155;
+    margin: 0;
+}
+
+.perk-card-footer {
+    background: #006c67;
+    color: #ffffff;
+    padding: 10px 24px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.perk-card-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.perk-card-meta svg {
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+.perk-card-footer a {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+}
+
+.perk-card-footer a:hover {
+    opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+    .perk-card-overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.97) 0%,
+            rgba(255, 255, 255, 0.93) 70%,
+            rgba(255, 255, 255, 0.84) 100%
+        );
+    }
+    .perk-card-content {
+        max-width: 100%;
+        padding: 20px 20px 16px;
+    }
+    .perk-card-footer {
+        padding: 12px 18px;
+        gap: 10px 16px;
+    }
+}
+
 .festival-details-card {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
