@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!backdrop) {
             backdrop = document.createElement('div');
             backdrop.className = 'nav-backdrop';
+            backdrop.style.display = 'none';
             document.body.appendChild(backdrop);
         }
 
@@ -115,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinksList.classList.remove('nav-active');
             hamburger.classList.remove('toggle');
             backdrop.classList.remove('nav-backdrop--active');
+            backdrop.style.display = 'none';
             document.body.classList.remove('nav-open');
         };
 
@@ -122,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const isOpen = navLinksList.classList.toggle('nav-active');
             hamburger.classList.toggle('toggle', isOpen);
             backdrop.classList.toggle('nav-backdrop--active', isOpen);
+            backdrop.style.display = isOpen ? 'block' : 'none';
             document.body.classList.toggle('nav-open', isOpen);
         };
 

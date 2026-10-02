@@ -2057,24 +2057,18 @@ h2::after {
    Parade Registration Modal
    ========================================= */
 .modal-overlay {
+    display: none;
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    display: flex;
+    background: rgba(0, 0, 0, 0.75);
     align-items: center;
     justify-content: center;
     padding: 20px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .modal-overlay.is-open {
-    opacity: 1;
-    visibility: visible;
+    display: flex;
 }
 
 .modal-container {
@@ -2604,20 +2598,7 @@ h2::after {
 
 /* Backdrop dim overlay for mobile drawer */
 .nav-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(10, 25, 20, 0.7);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index: 999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s ease;
-}
-
-.nav-backdrop.nav-backdrop--active {
-    opacity: 1;
-    pointer-events: auto;
+    display: none;
 }
 
 body.nav-open {
@@ -2625,6 +2606,19 @@ body.nav-open {
 }
 
 @media (max-width: 950px) {
+    .nav-backdrop {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        z-index: 999;
+    }
+
+    .nav-backdrop.nav-backdrop--active {
+        display: block;
+        cursor: pointer;
+    }
+
     .hamburger {
         display: flex; /* Show the hamburger */
     }
