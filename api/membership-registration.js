@@ -97,7 +97,7 @@ module.exports = async function handler(req, res) {
     "",
     "━━━━━━━━━━━━━━━━━━━━━━━━━━",
     "This application was submitted from the CACAO membership page.",
-    "The applicant has been instructed to send their dues via Cash App or Venmo (@alcaribbean)."
+    "The applicant has been instructed to send their dues via Cash App (@alcaribbean)."
   ];
 
   try {

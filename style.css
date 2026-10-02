@@ -1092,12 +1092,6 @@ h2::after {
     text-decoration: underline;
 }
 
-.venmo-note {
-    font-size: 14px;
-    opacity: 0.8;
-    margin-bottom: 1.5rem;
-}
-
 .btn-full {
     width: 100%;
     display: block;
@@ -1531,15 +1525,14 @@ h2::after {
 }
 
 .membership-payment-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 28px;
-    max-width: 560px;
+    display: flex;
+    justify-content: center;
+    max-width: 320px;
     margin: 0 auto;
-    align-items: stretch;
 }
 
 .membership-payment-card {
+    width: 100%;
     background: var(--color-white);
     border: 1px solid rgba(0, 108, 103, 0.14);
     border-radius: var(--border-radius);
@@ -1584,7 +1577,6 @@ h2::after {
 
 @media (max-width: 560px) {
     .membership-payment-grid {
-        grid-template-columns: 1fr;
         max-width: 280px;
     }
 }

@@ -117,7 +117,7 @@ module.exports = async function handler(req, res) {
   lines.push("");
   lines.push("━━━━━━━━━━━━━━━━━━━━━━━━━━");
   lines.push("This registration was submitted from the CACAO festival page.");
-  lines.push("The registrant has been informed that payment is via Cash App or Venmo (@alcaribbean).");
+  lines.push("The registrant has been informed that payment is via Cash App (@alcaribbean).");
 
   try {
     await resend.emails.send({
